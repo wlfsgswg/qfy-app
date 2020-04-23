@@ -1,0 +1,21 @@
+@import './../../theme/variable.less';
+
+.@{prefix}-home {
+  &-content {
+    .ant-layout-sider{
+      width: @leftMenuWidth !important;
+      height: 100vh;
+      min-width: @leftMenuWidth !important;
+      flex: none !important;
+    }
+    .ant-layout-header{
+      background-color: #fff;
+      padding: 0;
+    }
+    .ant-layout-content{
+      overflow-y: auto;
+      height: calc(100vh - 64px);
+      background-color: #fff;
+    }
+  }
+}

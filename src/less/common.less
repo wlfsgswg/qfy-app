@@ -1,0 +1,76 @@
+.l-left {
+  float: left;
+}
+
+.r-right {
+  float: right;
+}
+
+.clearfix:after {
+  content: ".";
+  display: block;
+  height: 0;
+  clear: both;
+  visibility: hidden;
+}
+
+.clearfix {
+  display: inline-block;
+}
+
+//定义
+.padding(@n, @i: 5) when (@i <=@n) {
+  .p-t-@{i} {
+    padding-top: unit(@i, px);
+  }
+
+  .p-b-@{i} {
+    padding-bottom: unit(@i, px);
+  }
+
+  .p-l-@{i} {
+    padding-left: unit(@i, px);
+  }
+
+  .p-r-@{i} {
+    padding-right: unit(@i, px);
+  }
+
+  .padding(@n, (@i + 5));
+}
+
+.margin(@n, @i: 5) when (@i <=@n) {
+  .m-t-@{i} {
+    margin-top: unit(@i, px);
+  }
+
+  .m-b-@{i} {
+    margin-bottom: unit(@i, px);
+  }
+
+  .m-l-@{i} {
+    margin-left: unit(@i, px);
+  }
+
+  .m-r-@{i} {
+    margin-right: unit(@i, px);
+  }
+
+  .margin(@n, (@i + 5));
+}
+
+// 调用
+.padding(30);
+.margin(30);
+
+.c999 {
+  color: #999;
+}
+
+.c333 {
+  color: #333;
+}
+
+.c666 {
+  color: #666;
+}
