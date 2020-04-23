@@ -12,8 +12,7 @@ class DialogDemo extends Component {
     const { afterClose, getContainer, onSuccess } = this.props;
     return (
       <Dialog
-        title={null}
-        // footer={null}
+        title={"Demo"}
         closable={true}
         afterClose={afterClose}
         getContainer={getContainer}
