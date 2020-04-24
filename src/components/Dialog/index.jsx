@@ -28,7 +28,7 @@ export default class Dialog extends Component {
   render() {
     const { visible } = this.state;
     let { className } = this.props;
-    className = className ? `mx-dialog ${className}` : "mx-dialog";
+    className = className ? `qfy-dialog ${className}` : "qfy-dialog";
 
     return (
       <Modal
