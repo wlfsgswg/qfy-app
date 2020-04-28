@@ -11,8 +11,8 @@ class MyHeader extends React.Component {
           <div className="clearfix top">
             <div className="r-right">
               <div className="clearfix">
-                {menu.map((it) => (
-                  <div className="l-left p-r-20" key={it.title}>
+                {menu.map((it, i) => (
+                  <div className={`class-${i} l-left p-r-15 `} key={it.title}>
                     <MyIcon type={it.icon} className="top-icon" />
                   </div>
                 ))}

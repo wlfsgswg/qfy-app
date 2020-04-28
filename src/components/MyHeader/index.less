@@ -3,14 +3,35 @@
 .@{prefix}-component-header {
   &-content {
     height       : @topMenuHeight;
-    border-bottom: 1px solid #999;
+    line-height  : @topMenuHeight;
+    border-bottom: 1px solid @border;
 
     .top {
       width: 100%;
 
       .top-icon {
-        font-size: 28px;
-        cursor   : pointer;
+        cursor: pointer;
+
+      }
+
+      .class-0{
+        font-size: 32px;
+      }
+      .class-1 {
+        font-size: 30px;
+      }
+
+      .class-2,
+      .class-3,
+      .class-4 {
+        font-size: 22px;
+        color    : #999;
+      }
+      .class-3{
+        font-size: 19px;
+      }
+      .class-4{
+        font-size: 17px;
       }
     }
   }

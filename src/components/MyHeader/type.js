@@ -1,28 +1,24 @@
 const menu = [
   {
-    title: "加载",
-    icon: "iconzhongxinjiazai"
-  },
-  {
-    title: "信息",
-    icon: "iconxiaoxi"
-  },
-  {
     title: "电话",
-    icon: "icontubiao210"
+    icon: "icondianhua",
   },
   {
     title: "个人",
-    icon: "icongerenzhongxin"
+    icon: "icongerenzhongxin",
   },
   {
     title: "返回",
-    icon: "iconicon--"
+    icon: "iconsuoxiao",
+  },
+  {
+    title: "叠加",
+    icon: "icondiejia-selecta",
   },
   {
     title: "关闭",
-    icon: "iconguanbi"
-  }
+    icon: "iconguanbi1",
+  },
 ];
 
 export { menu };

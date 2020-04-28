@@ -2,17 +2,17 @@ const menuTop = [
   {
     title: "消息",
     path: "/message",
-    icon: "iconxiaoxi"
+    icon: "iconxiaoxi",
   },
   {
     title: "工作",
     path: "/work",
-    icon: "icongongzuo"
+    icon: "icongongzuo",
   },
   {
     title: "通讯录",
     path: "/mail",
-    icon: "icontongxunlu-"
+    icon: "icontongxunlu-",
   },
 ];
 
@@ -20,13 +20,13 @@ const menuBottom = [
   {
     title: "切换应用",
     path: "/app",
-    icon: "iconqiehuan"
+    icon: "iconqiehuan",
   },
   {
     title: "管理后台",
     path: "/backstage",
-    icon: "iconhoutaizonglan"
-  }
+    icon: "iconhoutaizonglan",
+  },
 ];
 
-export { menuTop,menuBottom };
+export { menuTop, menuBottom };

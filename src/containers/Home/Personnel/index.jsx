@@ -3,24 +3,23 @@ import { classPrefix } from "./../../../const";
 import { renderRoutes } from "react-router-config";
 import { SecondMenu } from "./../../../components";
 import "./index.less";
-// import { Layout } from "antd";
-// const { Sider, Content } = Layout;
+import { Layout } from "antd";
+const { Sider, Content } = Layout;
 class Personnel extends React.Component {
   render() {
     return (
       <div className={`${classPrefix}-home-personnel`}>
         <div className={`${classPrefix}-home-personnel-content`}>
-          <SecondMenu />
-          <div>{renderRoutes(this.props.route.routes)}</div>
-
-          {/* <Layout className="layout2-className">
-            <Sider>
-             
+          <Layout className="layout2">
+            <Sider className="layout2-sider">
+              <SecondMenu />
             </Sider>
             <Layout>
-              <Content></Content>
+              <Content className="layout2-content">
+                {renderRoutes(this.props.route.routes)}
+              </Content>
             </Layout>
-          </Layout> */}
+          </Layout>
           <div className="content"></div>
         </div>
       </div>
