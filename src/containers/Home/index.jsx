@@ -9,7 +9,7 @@ import { Layout } from "antd";
 const { Header, Sider, Content } = Layout;
 class Home extends React.Component {
   componentDidMount() {
-    console.log(this.props.location);
+    // console.log(this.props.location);
   }
   render() {
     return (

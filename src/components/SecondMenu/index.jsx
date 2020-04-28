@@ -1,7 +1,8 @@
 import React from "react";
 import { Menu } from "antd";
-import { Link } from "react-router-dom";
+import { Link, withRouter } from "react-router-dom";
 import { classPrefix } from "../../const";
+import { routeMatching } from "./../../utils";
 import PropTypes from "prop-types";
 import "./index.less";
 const { SubMenu } = Menu;
@@ -15,6 +16,48 @@ class SecondMenu extends React.Component {
     };
   }
 
+  componentDidMount() {
+    const { menu } = this.props.siderObject;
+    const routes = this.handleGetRouts(menu);
+    // 路由匹配分为两种，一是进入页面直接进行匹配，二次操控history进行匹配
+    // 第一种
+    const mountPath = this.props.history.location.pathname;
+    // 此处只考虑了二级路由，如果是一级路由会走默认值
+    // 先走默认值
+    this.setState({ current: menu[0].title });
+    // 匹配
+    routes.map((m) => {
+      if (m.path === mountPath) this.setState({ current: m.title });
+      return undefined;
+    });
+    // 第二种
+    this.props.history.listen((route) => {
+      const path = routeMatching(route.pathname, 2);
+      // 先走默认值
+      this.setState({ current: menu[0].title });
+      // 寻找匹配
+      routes.map((l) => {
+        if (l.path === path) this.setState({ current: l.title });
+        return undefined;
+      });
+    });
+  }
+  // 整理路由数组
+  handleGetRouts = (e) => {
+    const routes = [];
+    e.map((item) => {
+      if (!item.path) {
+        item.children.map((it) => {
+          routes.push({ path: it.path, title: it.title });
+          return undefined;
+        });
+      }
+      if (item.path) routes.push({ path: item.path, title: item.title });
+      return undefined;
+    });
+    return routes;
+  };
+
   render() {
     const { menu } = this.props.siderObject;
     const { openKeys, current } = this.state;
@@ -27,7 +70,7 @@ class SecondMenu extends React.Component {
             onOpenChange={(e) => this.setState({ openKeys: e })}
             className="menu1"
             selectedKeys={[current]}
-            onClick={(e) => this.setState({ current: e.key })}
+            // onClick={(e) => this.setState({ current: e.key })}
           >
             {menu.map((item) => {
               return item.path ? (
@@ -56,4 +99,4 @@ class SecondMenu extends React.Component {
 SecondMenu.propTypes = {
   siderObject: PropTypes.object,
 };
-export default SecondMenu;
+export default withRouter(SecondMenu);
