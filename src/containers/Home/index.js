@@ -4,6 +4,7 @@ import Backstage from "./Backstage";
 import Message from "./Message";
 import User from "./User";
 import Work from "./Work";
+import Personnel from "./Personnel/index.jsx";
 
 export {
   App as AppModal,
@@ -11,5 +12,6 @@ export {
   Backstage as BackstageModal,
   Message as MessageModal,
   User as UserModal,
-  Work as WorkModal
+  Work as WorkModal,
+  Personnel as PersonnelModal,
 };
