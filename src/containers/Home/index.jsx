@@ -15,15 +15,17 @@ class Home extends React.Component {
     return (
       <div className={`${classPrefix}-home`}>
         <div className={`${classPrefix}-home-content`}>
-          <Layout className="layout1-className">
-            <Sider>
+          <Layout className="layout1">
+            <Sider className="layout1-sider">
               <LeftMenu />
             </Sider>
             <Layout>
-              <Header className="ant-header">
+              <Header className="layout1-header">
                 <MyHeader />
               </Header>
-              <Content>{renderRoutes(this.props.route.routes)}</Content>
+              <Content className="layout1-content">
+                {renderRoutes(this.props.route.routes)}
+              </Content>
             </Layout>
           </Layout>
         </div>

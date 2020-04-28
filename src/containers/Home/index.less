@@ -2,27 +2,24 @@
 
 .@{prefix}-home {
   &-content {
-    .layout1-className {
-      .ant-layout-sider {
+    .layout1 {
+      .layout1-sider {
         width    : @leftMenuWidth  !important;
         height   : 100vh;
         min-width: @leftMenuWidth  !important;
         flex     : none !important;
       }
 
-      .ant-layout-header {
-        background-color: #fff;
-        padding         : 0;
-      }
-
-      .ant-layout-content {
+      .layout1-content {
         overflow-y      : auto;
         height          : calc(100vh - @topMenuHeight);
         padding         : 10px 10px;
         background-color: @contentBgc;
       }
 
-      .ant-header {
+      .layout1-header{
+        background-color: #fff;
+        padding         : 0;
         height: @topMenuHeight;
       }
     }
