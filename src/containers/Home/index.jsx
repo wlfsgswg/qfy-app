@@ -15,7 +15,7 @@ class Home extends React.Component {
     return (
       <div className={`${classPrefix}-home`}>
         <div className={`${classPrefix}-home-content`}>
-          <Layout>
+          <Layout className="layout1-className">
             <Sider>
               <LeftMenu />
             </Sider>
