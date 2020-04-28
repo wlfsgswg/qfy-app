@@ -2,6 +2,7 @@ import React from "react";
 import { classPrefix } from "./../../../const";
 import { renderRoutes } from "react-router-config";
 import { SecondMenu } from "./../../../components";
+import { siderObject } from "./sider";
 import "./index.less";
 import { Layout } from "antd";
 const { Sider, Content } = Layout;
@@ -12,7 +13,7 @@ class Personnel extends React.Component {
         <div className={`${classPrefix}-home-personnel-content`}>
           <Layout className="layout2">
             <Sider className="layout2-sider">
-              <SecondMenu />
+              <SecondMenu siderObject={siderObject} />
             </Sider>
             <Layout>
               <Content className="layout2-content">

@@ -8,7 +8,7 @@ class Formal extends React.Component {
     return (
       <div className={`${classPrefix}-home-personnel-formal`}>
         <div className={`${classPrefix}-home-personnel-formal-content`}>
-          roster
+          formal
         </div>
       </div>
     );

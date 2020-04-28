@@ -1,6 +1,7 @@
-const sidebarObject = {
+const siderObject = {
   openKeys: ["员工关系", "统计分析"],
   name: "智能人事",
+  current: "员工花名册",
   menu: [
     {
       title: "员工花名册",
@@ -60,4 +61,4 @@ const sidebarObject = {
     },
   ],
 };
-export { sidebarObject };
+export { siderObject };
