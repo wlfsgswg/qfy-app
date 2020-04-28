@@ -82,7 +82,8 @@ export const routes = [
         routes: [
           {
             title: "花名册",
-            path: "/",
+            exact: true,
+            path: "/personnel",
             component: PersonneRoster,
           },
           {

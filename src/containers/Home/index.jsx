@@ -20,7 +20,7 @@ class Home extends React.Component {
               <LeftMenu />
             </Sider>
             <Layout>
-              <Header>
+              <Header className="ant-header">
                 <MyHeader />
               </Header>
               <Content>{renderRoutes(this.props.route.routes)}</Content>
