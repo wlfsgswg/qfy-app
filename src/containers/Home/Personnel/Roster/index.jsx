@@ -4,6 +4,7 @@ import { withRouter } from "react-router-dom";
 import { Title } from "./../../../../components";
 import Top from "./Top";
 import Search from "./Search";
+import Table from "./Table";
 import PropTypes from "prop-types";
 import "./index.less";
 import { Button } from "antd";
@@ -13,6 +14,11 @@ class Roster extends React.Component {
     this.state = {
       focus: 9999,
       focusMenu: 9999,
+      tableObj: {
+        limit: 10,
+        total: 100,
+        page: 1,
+      },
     };
   }
   // 选中
@@ -25,7 +31,7 @@ class Roster extends React.Component {
     this.setState({ focus: 9999, focusMenu: 9999 });
   };
   render() {
-    const { focus, focusMenu } = this.state;
+    const { focus, focusMenu, tableObj } = this.state;
     return (
       <div className={`${classPrefix}-home-personnel-roster`}>
         <div className={`${classPrefix}-home-personnel-roster-content`}>
@@ -39,6 +45,30 @@ class Roster extends React.Component {
             <div className="p-t-20">
               <Search />
             </div>
+          </div>
+          <div className="table">
+            <div className="table-top clearfix">
+              <div className="r-right p-l-10">
+                <Button>导出花名册</Button>
+              </div>
+              <div className="r-right p-l-10">
+                <Button>导入结果</Button>
+              </div>
+              <div className="r-right p-l-10">
+                <Button>导入花名册</Button>
+              </div>
+              <div className="r-right">
+                <Button type="primary">添加员工</Button>
+              </div>
+            </div>
+            <Table
+              current={(e) => {
+                this.setState({
+                  tableObj: { ...tableObj, page: e.current, limit: e.pageSize },
+                });
+              }}
+              tableObj={tableObj}
+            />
           </div>
         </div>
       </div>
