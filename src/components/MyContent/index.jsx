@@ -31,7 +31,7 @@ class MyContent extends React.Component {
 
 MyContent.propTypes = {
   siderObject: PropTypes.object,
-  routes: PropTypes.object,
+  routes: PropTypes.array,
 };
 
 export default MyContent;
