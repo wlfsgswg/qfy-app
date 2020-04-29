@@ -3,6 +3,7 @@ import { classPrefix } from "./../../../../const";
 import { withRouter } from "react-router-dom";
 import { Title } from "./../../../../components";
 import Top from "./Top";
+import Search from "./Search";
 import PropTypes from "prop-types";
 import "./index.less";
 import { Button } from "antd";
@@ -35,7 +36,9 @@ class Roster extends React.Component {
               focusMenu={focusMenu}
               onSelect={this.handleSelect}
             />
-            <Button onClick={this.handleClick}>点击</Button>
+            <div className="p-t-20">
+              <Search />
+            </div>
           </div>
         </div>
       </div>
