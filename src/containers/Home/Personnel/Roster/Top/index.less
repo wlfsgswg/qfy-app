@@ -1,0 +1,81 @@
+@import './../../../../../theme/variable.less';
+
+.@{prefix}-home-personnel-roster-top {
+    &-content {
+        width          : 100%;
+        display        : flex;
+        justify-content: space-between;
+
+        .cell {
+            border         : 1px solid @border;
+            padding-right  : 5px;
+            display        : flex;
+            justify-content: space-between;
+            position       : relative;
+
+            .p-l-5-i {
+                padding-left: 5px !important;
+            }
+
+            .cell-ul {
+                padding    : 10px 0;
+                line-height: 20px;
+
+                .cell-li {
+                    padding    : 0 15px;
+                    border-left: 1px solid @border;
+                    font-size  : 14px;
+                    cursor     : pointer;
+
+                    .title {
+                        text-align: center;
+                    }
+
+                    .num {
+                        text-align: center;
+                    }
+                }
+
+                .cell-li2 {
+                    border-left: none;
+                }
+            }
+
+            .cell-ul2 {
+                .cell-li {
+                    cursor: auto;
+                }
+
+                line-height     : 40px;
+                padding-left    : 5px;
+                background-color: #f6f9fa;
+            }
+
+            .pos {
+                position: absolute;
+                bottom  : -1px;
+                right   : 3px;
+
+                .icon {
+                    color    : @border;
+                    font-size: 12px;
+                }
+            }
+
+        }
+
+        .focus {
+            color: @borderGreen;
+        }
+
+        .focus-border {
+            border: 1px solid @borderGreen;
+
+            .pos {
+                .icon {
+                    color: @borderGreen;
+                }
+            }
+        }
+    }
+}
