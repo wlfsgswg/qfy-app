@@ -1,0 +1,25 @@
+@import './../../theme/variable.less';
+
+.@{prefix}-component-mycontent {
+    &-content {
+        .layout2 {
+            .layout2-sider {
+                width           : @secondLeftMenuWidth  !important;
+                height          : calc(100vh - @topMenuHeight - 20px);
+                min-width       : @secondLeftMenuWidth  !important;
+                flex            : none !important;
+                background-color: #fff;
+                border          : 1px solid @border;
+            }
+
+            .layout2-content {
+                overflow-y      : auto;
+                height          : calc(100vh - @topMenuHeight - 20px);
+                padding         : 10px 10px;
+                background-color: #fff;
+                border          : 1px solid @border;
+                border-left     : none;
+            }
+        }
+    }
+}
