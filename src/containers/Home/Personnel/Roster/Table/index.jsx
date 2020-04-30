@@ -57,11 +57,11 @@ class MyTable extends React.Component {
             columns={columns}
             pagination={{
               //   hideOnSinglePage: true,
-              pageSize: tableObj.limit,
-              total: tableObj.total,
+              pageSize: tableObj.pageSize,
+              total: tableObj.totalRecord,
               current: tableObj.page,
               showQuickJumper: true,
-              showTotal: (total) => `总共 ${tableObj.total} 条`,
+              showTotal: () => `总共 ${tableObj.totalRecord} 条`,
             }}
             onChange={this.handleCurrent}
           />

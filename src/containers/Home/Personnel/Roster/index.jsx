@@ -15,8 +15,8 @@ class Roster extends React.Component {
       focus: 9999,
       focusMenu: 9999,
       tableObj: {
-        limit: 10,
-        total: 100,
+        pageSize: 20,
+        totalRecord: 100,
         page: 1,
       },
     };
@@ -64,7 +64,11 @@ class Roster extends React.Component {
             <Table
               current={(e) => {
                 this.setState({
-                  tableObj: { ...tableObj, page: e.current, limit: e.pageSize },
+                  tableObj: {
+                    ...tableObj,
+                    page: e.current,
+                    pageSize: e.pageSize,
+                  },
                 });
               }}
               tableObj={tableObj}

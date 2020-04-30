@@ -1,13 +1,19 @@
 import React from "react";
 import { classPrefix } from "./../../../../../const";
 import { MyIcon } from "./../../../../../components";
+import { Spin } from "antd";
 import PropTypes from "prop-types";
 import { top1, top2, top3 } from "./type";
 import "./index.less";
 class Top extends React.Component {
   constructor(props) {
     super(props);
-    this.state = {};
+    this.state = {
+      top1: top1,
+      top2: top2,
+      top3: top3,
+      loading: false,
+    };
   }
   componentDidMount() {
     const top1Length = top1.length;
@@ -15,7 +21,35 @@ class Top extends React.Component {
     top1.map((it, i) => (it.key = i));
     top2.map((it, i) => (it.key = i + top1Length));
     top3.map((it, i) => (it.key = i + top1Length + top2Length));
+    this.handleGetTopList();
   }
+
+  // 请求原始数据
+  handleGetTopList = () => {
+    this.setState({ loading: true });
+    Request.post(`/member/findIndexReportData`, {}).then((res) => {
+      // console.log(res.data);
+      const objectKeys = Object.keys(res.data);
+      const objectValues = Object.values(res.data);
+      objectKeys.map((item, i) => {
+        top1.map((it) => {
+          if (it.status === item) it.num = objectValues[i];
+          return undefined;
+        });
+        top2.map((it) => {
+          if (it.status === item) it.num = objectValues[i];
+          return undefined;
+        });
+        top3.map((it) => {
+          if (it.status === item) it.num = objectValues[i];
+          return undefined;
+        });
+
+        return undefined;
+      });
+      this.setState({ top1, top2, top3, loading: false });
+    });
+  };
 
   // 高亮选中框选中项
   handleChangeTabs = (e) => {
@@ -41,82 +75,93 @@ class Top extends React.Component {
 
   render() {
     const { focus, focusMenu } = this.props;
+    const { top1, top2, top3, loading } = this.state;
     return (
       <div className={`${classPrefix}-home-personnel-roster-top`}>
-        <div className={`${classPrefix}-home-personnel-roster-top-content`}>
-          <div className={`${focusMenu === 0 ? "focus-border cell" : "cell"}`}>
-            {top1.map((it, i) =>
-              i === 0 ? (
-                <div key={i} className="cell-ul cell-ul2">
-                  <div className="cell-li cell-li2">
-                    {it.title}
-                    <span
-                      style={{
-                        color: "#000",
-                        fontWeight: 600,
-                        fontSize: "18px",
-                      }}
-                    >
-                      {it.num}
-                    </span>
-                    人
+        <Spin spinning={loading}>
+          <div className={`${classPrefix}-home-personnel-roster-top-content`}>
+            <div
+              className={`${focusMenu === 0 ? "focus-border cell" : "cell"}`}
+            >
+              {top1.map((it, i) =>
+                i === 0 ? (
+                  <div key={i} className="cell-ul cell-ul2">
+                    <div className="cell-li cell-li2">
+                      {it.title}
+                      <span
+                        style={{
+                          color: "#000",
+                          fontWeight: 600,
+                          fontSize: "18px",
+                        }}
+                      >
+                        {it.num}
+                      </span>
+                      人
+                    </div>
                   </div>
-                </div>
-              ) : (
-                <div key={i} className="cell-ul">
+                ) : (
+                  <div key={i} className="cell-ul">
+                    <div
+                      className={`${
+                        it.key === focus ? "focus cell-li" : "cell-li"
+                      }`}
+                      onClick={() => this.handleChangeTabs(it.key)}
+                    >
+                      <div className="title">{it.title}</div>
+                      <div className="num">{it.num}人</div>
+                    </div>
+                  </div>
+                )
+              )}
+              <div className="pos">
+                <MyIcon type="iconsanjiaoxing" className="icon" />
+              </div>
+            </div>
+            <div
+              className={`${focusMenu === 1 ? "focus-border cell" : "cell"}`}
+            >
+              {top2.map((it, i) => (
+                <div key={i} className={`${i === 0 ? "p-l-5-i" : ""} cell-ul`}>
                   <div
-                    className={`${
-                      it.key === focus ? "focus cell-li" : "cell-li"
-                    }`}
+                    className={`${i === 0 ? "cell-li2" : ""} ${
+                      it.key === focus ? "focus" : ""
+                    }  cell-li`}
                     onClick={() => this.handleChangeTabs(it.key)}
                   >
                     <div className="title">{it.title}</div>
                     <div className="num">{it.num}人</div>
                   </div>
                 </div>
-              )
-            )}
-            <div className="pos">
-              <MyIcon type="iconsanjiaoxing" className="icon" />
-            </div>
-          </div>
-          <div className={`${focusMenu === 1 ? "focus-border cell" : "cell"}`}>
-            {top2.map((it, i) => (
-              <div key={i} className={`${i === 0 ? "p-l-5-i" : ""} cell-ul`}>
-                <div
-                  className={`${i === 0 ? "cell-li2" : ""} ${
-                    it.key === focus ? "focus" : ""
-                  }  cell-li`}
-                  onClick={() => this.handleChangeTabs(it.key)}
-                >
-                  <div className="title">{it.title}</div>
-                  <div className="num">{it.num}人</div>
-                </div>
+              ))}
+              <div className="pos">
+                <MyIcon type="iconsanjiaoxing" className="icon" />
               </div>
-            ))}
-            <div className="pos">
-              <MyIcon type="iconsanjiaoxing" className="icon" />
             </div>
-          </div>
-          <div className={`${focusMenu === 2 ? "focus-border cell" : "cell"}`}>
-            {top3.map((it, i) => (
-              <div key={i} className={`${i === 0 ? "p-l-5-i" : ""} cell-ul`}>
-                <div
-                  className={`${i === 0 ? "cell-li2" : ""} ${
-                    it.key === focus ? "focus" : ""
-                  } cell-li`}
-                  onClick={() => this.handleChangeTabs(it.key)}
-                >
-                  <div className="title">{it.title}</div>
-                  <div className="num">{it.num}人</div>
+            <div
+              className={`${focusMenu === 2 ? "focus-border cell" : "cell"}`}
+            >
+              {top3.map((it, i) => (
+                <div key={i} className={`${i === 0 ? "p-l-5-i" : ""} cell-ul`}>
+                  <div
+                    className={`${i === 0 ? "cell-li2" : ""} ${
+                      it.key === focus ? "focus" : ""
+                    } cell-li`}
+                    onClick={() => this.handleChangeTabs(it.key)}
+                  >
+                    <div className="title">{it.title}</div>
+                    <div className="num">
+                      <span>{it.num}</span>人
+                    </div>
+                  </div>
                 </div>
+              ))}
+              <div className="pos">
+                <MyIcon type="iconsanjiaoxing" className="icon" />
               </div>
-            ))}
-            <div className="pos">
-              <MyIcon type="iconsanjiaoxing" className="icon" />
             </div>
           </div>
-        </div>
+        </Spin>
       </div>
     );
   }
