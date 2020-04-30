@@ -1,14 +1,19 @@
-import React from 'react';
-import ReactDOM from 'react-dom';
+import React from "react";
+import ReactDOM from "react-dom";
 import { ConfigProvider } from "antd";
-import './index.less';
-import App from './App.jsx';
-import * as serviceWorker from './serviceWorker';
+import "./index.less";
+import App from "./App.jsx";
+import * as serviceWorker from "./serviceWorker";
 import zhCN from "antd/es/locale/zh_CN";
+import moment from "moment";
+import "moment/locale/zh-cn";
+import Reauest from "./../src/utils/request";
+moment.locale("zhCN");
+window.Request = Reauest;
 
 ReactDOM.render(
   <ConfigProvider locale={zhCN}>
-      <App />
+    <App />
   </ConfigProvider>,
   document.getElementById("root")
 );

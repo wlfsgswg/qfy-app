@@ -2,22 +2,9 @@ import React from "react";
 import { Button } from "antd";
 import { classPrefix } from "./../../../const";
 import * as DialogDemo from "./DialogDemo";
-import Reauest from "./../../../utils/request";
 import "./index.less";
 class Message extends React.Component {
-  componentDidMount() {
-    Reauest.post("/api/material/2037.json", {
-      name: 1,
-      k: 1,
-      url: "http://www.baidu.com",
-    })
-      .then((res) => {
-        console.log(res);
-      })
-      .catch((error) => {
-        console.log(error);
-      });
-  }
+  componentDidMount() {}
 
   handleOpenDialog = () => {
     DialogDemo.open({

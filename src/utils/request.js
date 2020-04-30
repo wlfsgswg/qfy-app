@@ -1,6 +1,6 @@
 import axios from "axios";
 import { message } from "antd";
-import { getToken } from "./index";
+// import { message } from "antd";
 
 const Api = {};
 const method = ["get", "post", "put", "delete"];
@@ -16,10 +16,8 @@ method.forEach((item) => {
    */
   Api[item] = (url = "", data, options = {}) =>
     new Promise((resolve, reject) => {
-      const headers = {
-        //   "X-CSRF-TOKEN": _global && _global.csrf_token,
-      };
-      const token = getToken();
+      const headers = {};
+      const token = "";
       if (token) headers["Authorization"] = `Bearer ${token}`;
 
       let _options = {
@@ -40,33 +38,21 @@ method.forEach((item) => {
           _options
         )
       )
-        .then((res) => resolve(res))
+        .then((res) => {
+          resolve(res);
+        })
         .catch((error) => {
-          if (error.response && error.response.status === 401) {
-            // window.location.href = "/brand/login";
-            // reject(error.response);
-            console.log("请先登录");
-            return;
-          }
-
-          // if (error.response && error.response.status === 419) {
-          //     return refreshCrsfToken(item, url, data, options).then(r => resolve(r)).catch(err => reject(err.response));
-          // }
-          //   console.error(error)
-          if (error.response && error.response.data) {
-            if (!options.slient) {
-              if (error.response.status >= 500) {
-                message.error("服务器开了个小差");
-              } else if (typeof error.response.data == "object") {
-                message.error(
-                  error.response.data.message || error.response.data.error
-                );
-              } else {
-                message.error(error.response.data);
-              }
-            }
-            reject(error.response);
-          }
+          if (
+            error.response &&
+            error.response.data &&
+            error.response.data.code === "500"
+          )
+            message.error(
+              error.response && error.response.data && error.response.data.msg
+                ? error.response.data.msg
+                : "请求出错！"
+            );
+          reject(error.response);
         });
     });
 });

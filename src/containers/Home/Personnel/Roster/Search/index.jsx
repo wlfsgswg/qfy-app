@@ -20,6 +20,8 @@ class Search extends React.Component {
     super(props);
     this.state = {
       searchObj: {},
+      // 默认选中name
+      currentValue: "name",
     };
   }
 
@@ -31,7 +33,7 @@ class Search extends React.Component {
   handleReset = () => {};
 
   render() {
-    const { searchObj } = this.state;
+    const { searchObj, currentValue } = this.state;
     return (
       <div className={`${classPrefix}-home-personnel-roster-search`}>
         <div className={`${classPrefix}-home-personnel-roster-search-content`}>
@@ -45,22 +47,34 @@ class Search extends React.Component {
           >
             <Row>
               <Col span={8}>
-                <Form.Item name={["name"]} label="员工姓名">
-                  <Input placeholder="请输入员工姓名" />
-                </Form.Item>
-              </Col>
-              <Col span={8}>
                 <Form.Item
-                  name={["tel"]}
-                  label="员工手机号"
+                  name={["choose"]}
                   rules={[
-                    {
-                      pattern: /^1[3456789]\d{9}$/,
-                      message: "请输入正确手机号码！",
-                    },
+                    currentValue !== "name"
+                      ? {
+                          pattern: /^1[3456789]\d{9}$/,
+                          message: "请输入正确手机号码！",
+                        }
+                      : {},
                   ]}
+                  label={
+                    <Select
+                      value={currentValue}
+                      onSelect={(value) =>
+                        this.setState({ currentValue: value })
+                      }
+                      style={{ width: "84px" }}
+                    >
+                      <Select.Option key="name">姓名</Select.Option>
+                      <Select.Option key="tel">手机号</Select.Option>
+                    </Select>
+                  }
                 >
-                  <Input placeholder="请输入员工号码" />
+                  {currentValue === "name" ? (
+                    <Input placeholder="请输入员工姓名" />
+                  ) : (
+                    <Input placeholder="请输入员工手机号码" type="number" />
+                  )}
                 </Form.Item>
               </Col>
               <Col span={8}>
@@ -82,7 +96,7 @@ class Search extends React.Component {
                 </Form.Item>
               </Col>
               <Col span={8}>
-                <Form.Item name={["time"]} label="入职日期" rules={[{}]}>
+                <Form.Item name={["time"]} label="入职日期">
                   <RangePicker style={{ width: "100%" }} />
                 </Form.Item>
               </Col>
