@@ -1,7 +1,28 @@
 @import './../../../../theme/variable.less';
 
-.@{prrefix}-home-personnel-number {
+.@{prefix}-home-personnel-number {
+    background: #fff;
     &-content {
-        
+        padding-top: 20px;
+        .top{
+            padding: 0 10px;
+        }
+        .tool-bar{
+            padding: 0 10px 10px 10px;
+            border-bottom: 1px solid #ccc;
+        }
+        .employee{
+            padding: 20px 20px 0;
+            .employee-title{
+                display: flex;
+                align-items: center;
+                justify-content: space-between;
+                .number{
+                    margin: 0 5px;
+                    font-size: 18px;
+                    font-weight: bold;
+                }
+            }
+        }
     }
 }

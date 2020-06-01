@@ -1,0 +1,67 @@
+@import './../../../../../../theme/variable.less';
+
+.@{prefix}-home-personnel-roster-files-contract {
+    &-content{
+        font-size: 13px;
+        .content{
+            padding: 20px 0;
+            &-item{
+                padding: 12px;
+                border: 1px solid @border;
+                border-radius: 10px;
+                position: relative;
+                overflow: hidden;
+                &-title{
+                    color: #999;
+                    .bj{
+                        cursor: pointer;
+                        font-size: 15px;
+                    }
+                    .sc{
+                        cursor: pointer;
+                        font-size: 16px;
+                    }
+                    padding-bottom: 5px;
+                }
+                &-content{
+                    .ul{
+                        padding-left: 30px;
+                        .li{
+                            padding-bottom: 20px;
+                            .li-text{
+                                width: 200px;
+                                white-space: nowrap;
+                                text-overflow: ellipsis;
+                                overflow: hidden;
+                            }
+                        }
+                    }
+                }
+                .pos{
+                    position: absolute;
+                    left:0;
+                    top:0;
+                    &-icon{
+                        font-size: 50px;
+                        
+                    }
+                    .icon1{
+                        color: #4db2f8;
+                    }
+                    .icon2{
+                        color: #dddedf;
+                    }
+                    &-text{
+                        position: absolute;
+                        top: 7px;
+                        
+                        left: 0;
+                        color: #fff;
+                        font-size: 12px;
+                        transform: rotate(-45deg);
+                    }
+                }
+            }
+        }
+    }
+}

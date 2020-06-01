@@ -1,0 +1,41 @@
+@import './../../../../../theme/variable.less';
+
+.@{prefix}-home-personnel-roster-resultdialog {
+    &-content {
+        .content {
+            font-size: 13px;
+            min-height: 350px;
+            &-item {
+                padding-bottom: 10px;
+                border-bottom : 1px solid @border;
+                margin-bottom : 10px;
+
+                .top {
+                    font-size  : 12px;
+                    line-height: 20px;
+                }
+
+                .text {
+                    line-height: 30px;
+                }
+
+                &-right {
+                    color : @borderGreen;
+                    cursor: pointer;
+                    line-height: 50px;
+
+                    .icon {
+                        position : relative;
+                        top      : 3px;
+                        font-size: 18px;
+                        margin-left: 5px;
+                    }
+                }
+            }
+            .none-bottom{
+                border-bottom : none;
+                margin-bottom : 0;
+            }
+        }
+    }
+}

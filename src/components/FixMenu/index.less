@@ -1,0 +1,34 @@
+@import './../../theme/variable.less';
+
+.@{prefix}-component-fixmenu {
+    &-content {
+        height          : @fixMenu;
+        background-color: #fff;
+        .menu-item{
+            background-color: #fff;
+            padding:0 40px 0 20px;
+            line-height: @fixMenu;
+            cursor: pointer;
+            border-left: 1px solid @border;
+            border-right: 1px solid @border;
+            position: relative;
+        }
+        .menu-item:not(:first-child){
+            border-left: none;
+        }
+        .menu-item-focus{
+            color: @borderGreen;
+            background-color: #fff;
+        }
+        .pos{
+            position: absolute;
+            top: 1px;
+            right: 5px;
+
+            .icon{
+                font-size: 14px;
+                color: #999;
+            }
+        }
+    }
+}

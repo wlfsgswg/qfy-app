@@ -1,7 +1,28 @@
 @import './../../../../theme/variable.less';
 
-.@{prrefix}-home-personnel-statistics {
+.@{prefix}-home-personnel-statistics {
+    background: #fff;
     &-content {
-        
+        padding-top: 20px;
+        .top{
+            padding: 0 10px;
+        }
+        .tool-bar{
+            padding: 0 10px 10px 10px;
+            border-bottom: 1px solid #ccc;
+        }
+        .pie-bar{
+            display: flex;
+            .pie{
+                width: 50%;
+                padding: 20px;
+                .title{
+                    font-weight: bold;
+                }
+            }
+        }
+        .left{
+            border-right: 1px solid #ccc;
+        }
     }
 }

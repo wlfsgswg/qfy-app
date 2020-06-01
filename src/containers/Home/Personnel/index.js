@@ -9,7 +9,7 @@ import Record from "./Record";
 import Number from "./Number";
 import Incumbency from "./Incumbency";
 import Statistics from "./Statistics";
-
+import Internship from "./Internship";
 export {
   Roster as PersonneRoster,
   Entry as PersonneEntry,
@@ -22,4 +22,5 @@ export {
   Number as PersonneNumber,
   Incumbency as PersonneIncumbency,
   Statistics as PersonneStatistics,
+  Internship as PersonneInternship,
 };

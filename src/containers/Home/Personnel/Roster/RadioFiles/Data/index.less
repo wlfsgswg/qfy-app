@@ -1,0 +1,33 @@
+@import './../../../../../../theme/variable.less';
+
+.@{prefix}-home-personnel-roster-files-data {
+    &-content {
+        .card {
+            background-color: #fff;
+
+            &-top {
+                padding      : 0 10px 15px;
+                border-bottom: 1px solid @border;
+            }
+
+            &-content {
+                padding: 20px 30px;
+
+                &-item {
+                    padding-bottom: 20px;
+                    // width: 50%;
+                    overflow: hidden;
+                    .col-text {
+                        width        : 100px;
+                        margin-right: 30px;
+                    }
+                    .col-upload{
+                        width: 112px;
+                        min-height: 112px;
+                    }
+                }
+
+            }
+        }
+    }
+}

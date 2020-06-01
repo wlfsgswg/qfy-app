@@ -1,11 +1,25 @@
 import React from "react";
-import { Link } from "react-router-dom";
 import { classPrefix } from "./../../const";
 import MyIcon from "./../MyIcon";
-import { menuTop, menuBottom } from "./type";
+import { menuTop, menuBottom, focusMenu } from "./type";
+import { routeMatching } from "./../../utils";
+import { connect } from "react-redux";
+import { withRouter } from "react-router-dom";
 import "./index.less";
 class LeftMenu extends React.Component {
+  componentDidMount() {
+    const { addMenu, changeFocus } = this.props;
+    const mountPath = routeMatching(this.props.history.location.pathname);
+    focusMenu.map((it) => {
+      if (it.path === mountPath) {
+        addMenu({ link: it.path, focus: it.focus, title: it.title });
+        changeFocus(it.focus);
+      }
+      return undefined;
+    });
+  }
   render() {
+    const { history, addMenu, changeFocus } = this.props;
     return (
       <div className={`${classPrefix}-component-leftmenu`}>
         <div className={`${classPrefix}-component-leftmenu-content`}>
@@ -18,23 +32,43 @@ class LeftMenu extends React.Component {
             </div>
             <div className="bottom">
               <div>
-                {menuTop.map(it => (
-                  <Link to={it.path} key={it.path}>
-                    <div key={it.path} className="bottom-tabs">
-                      <MyIcon type={it.icon} className="bottom-tabs-icon" />
-                      <div className="bottom-tabs-title">{it.title}</div>
-                    </div>
-                  </Link>
+                {menuTop.map((it) => (
+                  <div
+                    key={it.path}
+                    className="bottom-tabs"
+                    onClick={() => {
+                      history.push(it.path);
+                      addMenu({
+                        title: it.title,
+                        link: it.path,
+                        focus: it.focus,
+                      });
+                      changeFocus(it.focus);
+                    }}
+                  >
+                    <MyIcon type={it.icon} className="bottom-tabs-icon" />
+                    <div className="bottom-tabs-title">{it.title}</div>
+                  </div>
                 ))}
               </div>
               <div>
-                {menuBottom.map(it => (
-                  <Link to={it.path} key={it.path}>
-                    <div className="bottom-tabs">
-                      <MyIcon type={it.icon} className="bottom-tabs-icon" />
-                      <div className="bottom-tabs-title">{it.title}</div>
-                    </div>
-                  </Link>
+                {menuBottom.map((it) => (
+                  <div
+                    className="bottom-tabs"
+                    key={it.path}
+                    onClick={() => {
+                      history.push(it.path);
+                      addMenu({
+                        title: it.title,
+                        link: it.path,
+                        focus: it.focus,
+                      });
+                      changeFocus(it.focus);
+                    }}
+                  >
+                    <MyIcon type={it.icon} className="bottom-tabs-icon" />
+                    <div className="bottom-tabs-title">{it.title}</div>
+                  </div>
                 ))}
               </div>
             </div>
@@ -44,5 +78,26 @@ class LeftMenu extends React.Component {
     );
   }
 }
+const mapStateToProps = (state) => {
+  return {
+    menu: state.menu,
+  };
+};
 
-export default LeftMenu;
+const mapDispatchToProps = (dispatch) => {
+  return {
+    addMenu: (e) => {
+      dispatch({ type: "ADD-MENU", data: e });
+    },
+    changeFocus: (e) => {
+      dispatch({ type: "CHANGE-FOCUS", focus: e });
+    },
+  };
+};
+
+const LeftMenuStore = connect(
+  mapStateToProps,
+  mapDispatchToProps
+)(withRouter(LeftMenu));
+
+export default LeftMenuStore;

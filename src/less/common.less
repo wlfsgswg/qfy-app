@@ -7,10 +7,10 @@
 }
 
 .clearfix:after {
-  content: ".";
-  display: block;
-  height: 0;
-  clear: both;
+  content   : ".";
+  display   : block;
+  height    : 0;
+  clear     : both;
   visibility: hidden;
 }
 
@@ -69,4 +69,40 @@
 
 .c666 {
   color: #666;
+}
+
+.red {
+  color: red;
+}
+
+.suc {
+  color: #497eef;
+}
+
+// 模拟antd
+.imit-antd-footer {
+  padding      : 10px 16px;
+  text-align   : right;
+  background   : transparent;
+  border-top   : 1px solid #f0f0f0;
+  border-radius: 0 0 2px 2px;
+}
+
+// 超出两行省略号
+.line-2{
+  text-overflow: -o-ellipsis-lastline;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  display: -webkit-box;
+  -webkit-line-clamp: 2;
+  line-clamp: 2;
+  -webkit-box-orient: vertical;
+  word-break: break-all;
+}
+
+.t-a-r{
+  text-align: right;
+}
+.t-a-c{
+  text-align: center;
 }

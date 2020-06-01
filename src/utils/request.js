@@ -1,6 +1,5 @@
 import axios from "axios";
 import { message } from "antd";
-// import { message } from "antd";
 
 const Api = {};
 const method = ["get", "post", "put", "delete"];
@@ -17,15 +16,24 @@ method.forEach((item) => {
   Api[item] = (url = "", data, options = {}) =>
     new Promise((resolve, reject) => {
       const headers = {};
-      const token = "";
-      if (token) headers["Authorization"] = `Bearer ${token}`;
-
       let _options = {
         headers,
       };
+
       if (options && options.headers) {
         _options.headers = Object.assign({}, headers, options.headers);
       }
+
+      // http request 拦截器
+      axios.interceptors.request.use(
+        (config) => {
+          // 判断是否存在token，如果存在的话，则每个http header都加上token
+          return config;
+        },
+        (err) => {
+          return Promise.reject(err);
+        }
+      );
 
       axios(
         Object.assign(
@@ -42,13 +50,15 @@ method.forEach((item) => {
           resolve(res);
         })
         .catch((error) => {
+          console.log("后台开始报错啦");
+          // console.log(error.response);
           if (
             error.response &&
-            error.response.data &&
-            error.response.data.code === "500"
+            error.response.status &&
+            error.response.status === 500
           )
             message.error(
-              error.response && error.response.data && error.response.data.msg
+              error.response.data && error.response.data.msg
                 ? error.response.data.msg
                 : "请求出错！"
             );

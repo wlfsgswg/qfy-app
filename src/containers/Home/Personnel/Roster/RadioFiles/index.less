@@ -1,0 +1,59 @@
+@import './../../../../../theme/variable.less';
+
+.@{prefix}-home-personnel-roster-files {
+    @width : 250px;
+    @height: calc(100vh - @topMenuHeight - 20px - 2px);
+    height : 100%;
+
+    &-content {
+        .layout3 {
+            .ant-layout-sider {
+                background : #fff;
+                width      : @width  !important;
+                height     : @height  !important;
+                min-width  : @width  !important;
+                flex       : none !important;
+                border-left: 1px solid @border;
+            }
+
+            .ant-layout-content {
+                width           : calc(100% - @width);
+                height          : @height  !important;
+                background-color: #fff;
+                overflow-y      : auto;
+            }
+
+            &-content {
+                .top {
+                    padding         : 20px 10px 0;
+                    background-color: #fff;
+
+                    &-content {
+                        padding: 0 5px;
+
+                        .top-tab-div {
+                            padding: 0 10px;
+                        }
+                    }
+                }
+            }
+
+            &-sider {
+                &-content {
+                    &-yes {
+                        padding-top: 30px;
+                        overflow-y : auto;
+                        overflow-x : hidden;
+                        height     : @height  !important;
+                    }
+
+                    &-no {
+                        width      : 100%;
+                        text-align : center;
+                        padding-top: 200px;
+                    }
+                }
+            }
+        }
+    }
+}

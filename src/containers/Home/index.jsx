@@ -1,16 +1,14 @@
 import React from "react";
 import { withRouter } from "react-router";
 import { renderRoutes } from "react-router-config";
-import { LeftMenu, MyHeader } from "./../../components";
+import { LeftMenu, MyHeader, FixMenu } from "./../../components";
 import { classPrefix } from "./../../const";
 import "./index.less";
 import { Layout } from "antd";
 
 const { Header, Sider, Content } = Layout;
 class Home extends React.Component {
-  componentDidMount() {
-    // console.log(this.props.location);
-  }
+  componentDidMount() {}
   render() {
     return (
       <div className={`${classPrefix}-home`}>
@@ -23,6 +21,7 @@ class Home extends React.Component {
               <Header className="layout1-header">
                 <MyHeader />
               </Header>
+              <FixMenu />
               <Content className="layout1-content">
                 {renderRoutes(this.props.route.routes)}
               </Content>

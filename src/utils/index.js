@@ -10,13 +10,110 @@ export const routeMatching = (path, rank = 1) => {
   // if (rank > 3) throw `暂不支持截取${rank}级路由`;
   const routerArr = path.split("/");
   let router;
-  router =
-    rank === 1
-      ? "/" + routerArr[1]
-      : rank === 2
-      ? "/" + routerArr[1] + "/" + routerArr[2]
-      : "/" + routerArr[1] + "/" + routerArr[2] + "/" + routerArr[3];
+  if (routerArr.length === 2) router = "/" + routerArr[1];
+  if (routerArr.length !== 2) {
+    router =
+      rank === 1
+        ? "/" + routerArr[1]
+        : rank === 2
+        ? "/" + routerArr[1] + "/" + routerArr[2]
+        : "/" + routerArr[1] + "/" + routerArr[2] + "/" + routerArr[3];
+  }
   return router;
+};
+/**
+ * @description 该方法主要是把后台给的数据流转化为.xls表格并进行下载
+ * @param {*} url 必填接口地址
+ * @param {*} obj 非必填，请求所传参数，默认为空对象
+ * @param {*} methods 非必填请求方式 get post 等默认post
+ * @param {*} name 非必填，如果不填默认名称为‘模板.xls‘
+ * @param {*} cb 非必填，成功的回调
+ *
+ */
+
+export const dataStreamToXls = (
+  url,
+  obj = {},
+  methods = "post",
+  name = "模板.xls",
+  cb = () => {}
+) => {
+  fetch(url, {
+    body: JSON.stringify(obj),
+    mode: "cors",
+    method: methods,
+    responseType: "blob",
+    headers: new Headers({
+      "Content-Type": "application/json",
+    }),
+  })
+    .then((res) => {
+      return res.blob();
+    })
+    .then((blob) => {
+      var link = document.createElement("a");
+      link.href = window.URL.createObjectURL(blob);
+      link.download = name;
+      var evt = document.createEvent("MouseEvents");
+      evt.initEvent("click", true, true);
+      link.dispatchEvent(evt);
+      window.URL.revokeObjectURL(link.href);
+      cb();
+    });
+};
+
+/**
+ *
+ * @param {*} text 必填 number|string 数据返回的值
+ * @param {*} arr 必填 array code码表中的数组
+ * @param {*} key 想要获取数组中的属性的名字，默认取keyValue
+ * @param {*} value 想要获取数组中的特定属性的值，默认取keyName
+ * @return string 返回码表中取得的名称
+ */
+export const textFromCodeTables = (
+  text,
+  arr = [],
+  key = "keyValue",
+  value = "keyName"
+) => {
+  let string = "--";
+  arr.length &&
+    arr.map((it) => {
+      if (it[key] === text + "" || it[key] === Number(text)) string = it[value];
+      return undefined;
+    });
+  return string;
+};
+/**
+ * @description 该方法主要是通过模板code获取后台返回的模板html，并替换特定字段
+ * @param {*} templateCode 必传 状态code匹配对应模板
+ * @param {*} arr 必传 模板数组
+ * @param {*} orginArr 返回模板中需要替换的特定字段组成的数组
+ * @param {*} replaceArr 返回模板中对应替换字段组成的数组 和orginArr长度一定相同
+ */
+
+export const codeToTemplate = (
+  templateCode,
+  arr,
+  orginArr = [],
+  replaceArr = []
+) => {
+  let template = "<div></div>";
+  arr.length &&
+    arr.map((it) => {
+      if (it.id === templateCode) template = it.content;
+      return undefined;
+    });
+  // 此处开始匹配替换特定字段
+  orginArr.length !== 0 &&
+    orginArr.map((item, i) => {
+      template = template.replace(
+        new RegExp(item, "g"),
+        replaceArr[i] ? replaceArr[i] : "--"
+      );
+      return undefined;
+    });
+  return template;
 };
 
 /**

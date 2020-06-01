@@ -11,9 +11,7 @@ class Message extends React.Component {
       data: {
         name: 1,
       },
-      onSuccess: () => {
-        console.log("成功");
-      },
+      onSuccess: () => {},
     });
   };
   render() {

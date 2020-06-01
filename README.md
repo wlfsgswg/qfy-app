@@ -35,7 +35,7 @@ npm install antd --save
 
 ```
 
-### 公共组件说明 `src/public/components`
+### 公共组件说明 `src/components`
 
 - MyIcon
 
@@ -46,7 +46,6 @@ npm install antd --save
 
 注意 ⚠️ 图标的选取最好是选择单身图标，因为单色图标可以设置颜色
 
-![iconfont](/readme_images/单色.png)
 
 - Dialog
 

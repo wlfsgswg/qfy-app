@@ -5,4 +5,18 @@ import Dialog from "./Dialog";
 import SecondMenu from "./SecondMenu";
 import MyContent from "./MyContent";
 import Title from "./Title";
-export { LeftMenu, MyIcon, MyHeader, Dialog, SecondMenu, MyContent, Title };
+import TitleBack from "./TitleBack";
+import MyBasicTable from "./MyBasicTable";
+import FixMenu from "./FixMenu";
+export {
+  LeftMenu,
+  MyIcon,
+  MyHeader,
+  Dialog,
+  SecondMenu,
+  MyContent,
+  Title,
+  TitleBack,
+  MyBasicTable as Table,
+  FixMenu,
+};

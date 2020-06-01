@@ -1,5 +1,5 @@
 import React, { Component } from "react";
-import { render, unmountComponentAtNode } from "react-dom";
+import { render } from "react-dom";
 import { Modal } from "antd";
 import PropTypes from "prop-types";
 import { ConfigProvider } from "antd";
@@ -29,7 +29,6 @@ export default class Dialog extends Component {
     const { visible } = this.state;
     let { className } = this.props;
     className = className ? `qfy-dialog ${className}` : "qfy-dialog";
-
     return (
       <Modal
         visible={
@@ -52,10 +51,12 @@ Dialog.propTypes = {
 
 Dialog.OpenDialog = (base = {}, children) => {
   const container = document.createElement("div");
-  document.body.appendChild(container);
+  document.body.querySelector(".layout1-content").appendChild(container);
 
   const props = Object.assign(base, {
-    afterClose: () => unmountComponentAtNode(container),
+    afterClose: () =>
+      document.body.querySelector(".layout1-content").removeChild(container),
+    // afterClose: () => unmountComponentAtNode(container),
     getContainer: () => container,
   });
   render(

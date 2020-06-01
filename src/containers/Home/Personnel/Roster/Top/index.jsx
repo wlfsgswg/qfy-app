@@ -13,6 +13,8 @@ class Top extends React.Component {
       top2: top2,
       top3: top3,
       loading: false,
+      focus: "",
+      focusMenu: "",
     };
   }
   componentDidMount() {
@@ -22,6 +24,11 @@ class Top extends React.Component {
     top2.map((it, i) => (it.key = i + top1Length));
     top3.map((it, i) => (it.key = i + top1Length + top2Length));
     this.handleGetTopList();
+  }
+  componentWillUnmount() {
+    this.setState = () => {
+      return;
+    };
   }
 
   // 请求原始数据
@@ -70,11 +77,17 @@ class Top extends React.Component {
       if (item.key === e) obj = item;
       return undefined;
     });
-    onSelect({ ...obj, focus: focus, focusMenu: focusMenu });
+    this.setState(
+      {
+        focus: focus,
+        focusMenu: focusMenu,
+      },
+      () => onSelect({ ...obj, focus: focus, focusMenu: focusMenu })
+    );
   };
 
   render() {
-    const { focus, focusMenu } = this.props;
+    const { focus, focusMenu } = this.state;
     const { top1, top2, top3, loading } = this.state;
     return (
       <div className={`${classPrefix}-home-personnel-roster-top`}>
@@ -86,18 +99,16 @@ class Top extends React.Component {
               {top1.map((it, i) =>
                 i === 0 ? (
                   <div key={i} className="cell-ul cell-ul2">
-                    <div className="cell-li cell-li2">
+                    <div
+                      className={`${
+                        it.key === focus
+                          ? "focus cell-li cell-li2"
+                          : "cell-li cell-li2"
+                      }`}
+                      onClick={() => this.handleChangeTabs(it.key)}
+                    >
                       {it.title}
-                      <span
-                        style={{
-                          color: "#000",
-                          fontWeight: 600,
-                          fontSize: "18px",
-                        }}
-                      >
-                        {it.num}
-                      </span>
-                      人
+                      <span className="num-zz">{it.num}</span>人
                     </div>
                   </div>
                 ) : (

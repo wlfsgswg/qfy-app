@@ -28,6 +28,10 @@ const siderObject = {
           path: "/personnel/quit",
         },
         {
+          title: "兼职实习管理",
+          path: "/personnel/internship",
+        },
+        {
           title: "合同管理",
           path: "/personnel/contract",
         },
